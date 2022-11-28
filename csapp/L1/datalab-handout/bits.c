@@ -220,7 +220,13 @@ int conditional(int x, int y, int z) {
  *   Rating: 3
  */
 int isLessOrEqual(int x, int y) {
-  return 2;
+  //return ((x+(~y+0x1))>>31)|(!(x^y)); overflow
+  int ass = 0x1<<31;//1
+  int condition = (((x&ass))^((y&ass)))>>31;//3
+  int spe = (x>>31)&0x1; //2
+  int norm1 = ((x+(~y+0x1))>>31)&0x1;//two cases    5 ops
+  int norm2 = !(x^y); //2
+  return norm2 | (~condition) & norm1 | (condition) & spe; //5
 }
 //4
 /* 
