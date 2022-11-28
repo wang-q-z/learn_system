@@ -171,7 +171,7 @@ int isTmax(int x) {
  *   Rating: 2
  */
 int allOddBits(int x) {
-  return 2;
+  return !(0xAAAAAAAA^(x&0xAAAAAAAA));
 }
 /* 
  * negate - return -x 
@@ -181,10 +181,10 @@ int allOddBits(int x) {
  *   Rating: 2
  */
 int negate(int x) {
-  return 2;
+  return ~x + 0x1;
 }
 //3
-/* 
+/* 0
  * isAsciiDigit - return 1 if 0x30 <= x <= 0x39 (ASCII codes for characters '0' to '9')
  *   Example: isAsciiDigit(0x35) = 1.
  *            isAsciiDigit(0x3a) = 0.
@@ -194,7 +194,12 @@ int negate(int x) {
  *   Rating: 3
  */
 int isAsciiDigit(int x) {
-  return 2;
+  //return (~(((x+(~0x30+0x1)&(0x1<<31))>>31)+0x1)^(~((x+(~0x39)&(0x1<<31))>>31)+0x1))&((~(x>>31)+0x1)^(0x1));//算术右移
+ //int left= !((x+~(0x30)+1)>>31);
+ //int right=!((0x39+(~x)+1)>>31);
+
+ //return left & right;
+ return !((x+(~0x30+0x1))>>31)&!((~x+(0x39)+0x1)>>31);
 }
 /* 
  * conditional - same as x ? y : z 
@@ -204,6 +209,7 @@ int isAsciiDigit(int x) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
+  
   return 2;
 }
 /* 
