@@ -238,6 +238,7 @@ int isLessOrEqual(int x, int y) {
  *   Rating: 4 
  */
 int logicalNeg(int x) {
+  
   return 2;
 }
 /* howManyBits - return the minimum number of bits required to represent x in
