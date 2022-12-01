@@ -1,32 +1,6 @@
 #include<stdlib.h>
 #include<stdint.h>
 
-typedef struct CPU_STRUCT
-{
-    union{
-        struct 
-        {
-            uint8_t al;
-            uint8_t ah;
-        }; 
-        uint16_t ax;
-        uint32_t eax;
-        uint64_t rax;
-    };
-    
-
-    uint64_t rbx;
-    uint64_t rcx;
-    uint64_t rdx;
-    uint64_t rsi;
-    uint64_t rdi;
-    uint64_t rbp;
-    uint64_t rsp;
-    uint64_t rip;
-}reg_t;
-
-reg_t reg;
-
 typedef  enum OP{
     MOV,
     PUSH,
@@ -59,11 +33,9 @@ typedef struct INSTRUCT_STRUCT
     od_t dst;
 }inst_t;
 
-#define MM_LEN 1000
-uint8_t mm[MM_LEN];
 
-#define INST_LEN 100
-inst_t programp[INST_LEN];
+
+
 
 
 uint64_t decode_od(od_t od);
